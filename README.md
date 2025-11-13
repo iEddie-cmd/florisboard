@@ -75,6 +75,22 @@ Beginning with v0.7 FlorisBoard will enter the public beta on Google Play.
 - Integrated extension support (still evolving)
 - Emoji keyboard / history / suggestions
 
+## Automating input via ADB
+Need to feed single characters or emoji from a script? While FlorisBoard is the
+active input method you can broadcast text straight into the editor via ADB:
+
+```
+adb shell am broadcast \
+    -a dev.patrickgold.florisboard.action.COMMIT_TEXT \
+    -n dev.patrickgold.florisboard/.ime.adb.AdbInputReceiver \
+    --es text "🙂"
+```
+
+The `text` extra accepts any UTF-8 string, so you can automate entire emoji
+lists. Optionally provide `--ei cursor_position <int>` if you need a custom
+cursor delta after the text has been committed (defaults to the length of the
+inserted text).
+
 > [!IMPORTANT]
 > Word suggestions/spell checking are not included in the current releases
 > and are a major goal for the v0.6 milestone.

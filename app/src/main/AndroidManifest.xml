@@ -159,6 +159,15 @@
                 tools:node="remove"/>
         </provider>
 
+        <!-- Allow shell/ADB clients to commit text while FlorisBoard is focused -->
+        <receiver
+            android:name="dev.patrickgold.florisboard.ime.adb.AdbInputReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="dev.patrickgold.florisboard.action.COMMIT_TEXT"/>
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>
